@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💖 Ramknya & Rahul 💖</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background-color:#ffd6e8;
+    font-family:"Poppins",sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    transition:background 1s;
+  }
+
+  .screen{
+    display:none;
+    text-align:center;
+    animation:fadeIn 1.5s ease;
+  }
+
+  .active{display:block;}
+
+  img{
+    width:110px;
+    height:110px;
+    border-radius:15px;
+    margin-bottom:15px;
+  }
+
+  h2{
+    font-size:25px;
+    color:#333;
+  }
+  p{color:#555;margin-bottom:20px;}
+
+  .btn{
+    padding:10px 25px;
+    margin:10px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    cursor:pointer;
+    transition:0.3s;
+  }
+  .btn:hover{background:#ffb6c1;}
+
+  .puzzle{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    margin-top:20px;
+  }
+  .piece{
+    width:60px;
+    height:60px;
+    background:#fff;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    cursor:pointer;
+    transition:0.3s;
+  }
+  .piece:hover{background:#ffe1ec;}
+
+  @keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+  }
+</style>
+</head>
+<body>
+
+<!-- SCREEN 1 -->
+<div id="screen1" class="screen active">
+  <img src="https://i.ibb.co/4fnqdxH/cute-cat.gif" alt="cute">
+  <h2>Do you love me? 🥺</h2>
+  <p>I am all yours 💖</p>
+  <button class="btn noBtn" id="no1">No 😢</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="screen">
+  <img src="https://i.ibb.co/g7KfSpq/sad.gif" alt="sad">
+  <h2>Ek aur baar soch lo 😢</h2>
+  <p>Kyu aisa kar rahe ho meri jaan 💔</p>
+  <button class="btn noBtn" id="no2">Still No 😭</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="screen">
+  <img src="https://i.ibb.co/nPzqkzk/lovehug.gif" alt="cute">
+  <h2>Baby man jao na! Kitna bhav khaogi 😭</h2>
+  <p>Bohot galti baat hai yaar 😢</p>
+  <button class="btn noBtn" id="no3">No 😤</button>
+</div>
+
+<!-- PUZZLE SCREEN -->
+<div id="screen4" class="screen">
+  <h2>Last Step 💌</h2>
+  <p>Arrange “LOVE” in correct order 💞</p>
+  <div class="puzzle">
+    <div class="piece" draggable="true">E</div>
+    <div class="piece" draggable="true">O</div>
+    <div class="piece" draggable="true">V</div>
+    <div class="piece" draggable="true">L</div>
+  </div>
+  <button class="btn" id="check">Check 💫</button>
+</div>
+
+<!-- FINAL SCREEN -->
+<div id="screen5" class="screen">
+  <img src="https://i.ibb.co/VW7Gf7H/heart.gif" alt="heart">
+  <h2>Love You Ramknya 💞</h2>
+  <p>Forever Yours — Rahul ❤️</p>
+</div>
+
+<script>
+const s1=document.getElementById("screen1");
+const s2=document.getElementById("screen2");
+const s3=document.getElementById("screen3");
+const s4=document.getElementById("screen4");
+const s5=document.getElementById("screen5");
+
+document.getElementById("no1").onclick=()=>{s1.classList.remove("active");s2.classList.add("active");}
+document.getElementById("no2").onclick=()=>{s2.classList.remove("active");s3.classList.add("active");}
+document.getElementById("no3").onclick=()=>{s3.classList.remove("active");s4.classList.add("active");}
+
+const puzzle=document.querySelectorAll(".piece");
+let arr=["E","O","V","L"];
+
+puzzle.forEach(p=>{
+  p.onclick=()=>{
+    let first=arr.shift();
+    arr.push(first);
+    puzzle.forEach((el,i)=>el.textContent=arr[i]);
+  }
+});
+
+document.getElementById("check").onclick=()=>{
+  if(arr.join("")==="LOVE"){
+    s4.classList.remove("active");
+    s5.classList.add("active");
+  } else {
+    alert("Try again meri jaan 😘");
+  }
+};
+</script>
+
+</body>
+</html>
